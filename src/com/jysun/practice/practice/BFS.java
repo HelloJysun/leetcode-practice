@@ -18,8 +18,21 @@ public class BFS {
         new BFS().bfs(graph, 'B');
         new BFS().bfs(graph, 'C');
         new BFS().bfs(graph, 'D');
-        new BFS().bfs(graph, 'E');
+        Map<Character, Character> parent = new BFS().bfs(graph, 'E');
         new BFS().bfs(graph, 'F');
+        System.out.println(parent);
+        // 找到 A -> E 的最短路径
+        Character node = 'A';
+        int len = 0;
+        while (node != null) {
+            len++;
+            System.out.printf(node + "");
+            node = parent.get(node);
+            if (node != null) {
+                System.out.printf(" -> ");
+            }
+        }
+        System.out.println("A -> E 最短路径：" + len);
     }
 
     /**
@@ -30,13 +43,17 @@ public class BFS {
      *
      * @param graph 字典结构
      * @param start 起始结点
+     * @return parent 邻接点的父节点，可通过该hash表找到两个结点的最短连接路径
      */
-    private void bfs(Map<Character, List<Character>> graph, Character start) {
+    private Map<Character, Character> bfs(Map<Character, List<Character>> graph, Character start) {
         Queue<Character> queue = new LinkedList<Character>() {{
             offer(start);
         }};
         Set<Character> visited = new HashSet<Character>() {{
             add(start);
+        }};
+        Map<Character, Character> parent = new HashMap<Character, Character>() {{
+            put(start, null);
         }};
         while (!queue.isEmpty()) {
             Character vertex = queue.poll();
@@ -46,9 +63,11 @@ public class BFS {
                 if (!visited.contains(node)) {
                     queue.offer(node);
                     visited.add(node);
+                    parent.put(node, vertex);
                 }
             }
         }
         System.out.println();
+        return parent;
     }
 }
