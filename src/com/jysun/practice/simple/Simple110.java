@@ -40,35 +40,11 @@ import com.jysun.practice.datastruct.TreeNode;
 public class Simple110 {
 
     public static void main(String[] args) {
-        TreeNode node3 = new TreeNode(3);
-        TreeNode node9 = new TreeNode(9);
-        TreeNode node20 = new TreeNode(20);
-        TreeNode node15 = new TreeNode(15);
-        TreeNode node7 = new TreeNode(7);
-        node3.left = node9;
-        node3.right = node20;
-        node20.left = node15;
-        node20.right = node7;
-
-        TreeNode node1 = new TreeNode(1);
-        TreeNode node1_l = new TreeNode(2);
-        TreeNode node1_r = new TreeNode(2);
-        TreeNode node2_l = new TreeNode(3);
-        TreeNode node2_r = new TreeNode(3);
-        TreeNode node3_l = new TreeNode(4);
-        TreeNode node3_r = new TreeNode(4);
-        node1.left = node1_l;
-        node1.right = node1_r;
-        node1_l.left = node2_l;
-        node1_l.right = node2_r;
-        node2_l.left = node3_l;
-        node2_l.right = node3_r;
-
         Simple110 obj = new Simple110();
-        System.out.println(obj.isBalanced(node3));
-        System.out.println(obj.isBalanced(node1));
-        System.out.println(obj.isBalancedOpt(node3));
-        System.out.println(obj.isBalancedOpt(node1));
+        System.out.println(obj.isBalanced(TreeNode.createSimpleBinaryTree()));
+        System.out.println(obj.isBalanced(TreeNode.createSimpleBinaryTree3()));
+        System.out.println(obj.isBalancedOpt(TreeNode.createSimpleBinaryTree()));
+        System.out.println(obj.isBalancedOpt(TreeNode.createSimpleBinaryTree3()));
     }
 
     /**
@@ -106,7 +82,7 @@ public class Simple110 {
      * @return
      */
     public boolean isBalancedOpt(TreeNode root) {
-        return heightOpt(root) >= 0;
+        return heightOpt(root) != -1;
     }
 
     /**
@@ -124,9 +100,6 @@ public class Simple110 {
         }
         int l = heightOpt(root.left);
         int r = heightOpt(root.right);
-        if (l == -1 || r == -1 || Math.abs(l - r) > 1) {
-            return -1;
-        }
-        return Math.max(l, r) + 1;
+        return l != -1 && r != -1 && Math.abs(l - r) <= 1 ? Math.max(l, r) + 1 : -1;
     }
 }
