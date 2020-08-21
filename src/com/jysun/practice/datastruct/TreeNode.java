@@ -41,6 +41,28 @@ public class TreeNode {
      *
      * @return
      */
+    public static TreeNode createSimpleBinaryTree3() {
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node1_l = new TreeNode(2);
+        TreeNode node1_r = new TreeNode(2);
+        TreeNode node2_l = new TreeNode(3);
+        TreeNode node2_r = new TreeNode(3);
+        TreeNode node3_l = new TreeNode(4);
+        TreeNode node3_r = new TreeNode(4);
+        node1.left = node1_l;
+        node1.right = node1_r;
+        node1_l.left = node2_l;
+        node1_l.right = node2_r;
+        node2_l.left = node3_l;
+        node2_l.right = node3_r;
+        return node1;
+    }
+
+    /**
+     * 创建一个普通的二叉树
+     *
+     * @return
+     */
     public static TreeNode createSimpleBinaryTree2() {
         TreeNode node3 = new TreeNode(3);
         TreeNode node9 = new TreeNode(9);
