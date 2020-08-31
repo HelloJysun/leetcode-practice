@@ -16,13 +16,32 @@ public class KMP {
 
     /**
      * 构造prefix table数组
+     *  int[] next = new int[s.length()];
+     *         next[0] = 0;
+     *         int len = 0;
+     *         int i = 1;
+     *         while (i < s.length()) {
+     *             if (s.charAt(i) == s.charAt(len)) {
+     *                 len++;
+     *                 next[i] = len;
+     *                 i++;
+     *             } else {
+     *                 if (len == 0) {
+     *                     next[i] = 0;
+     *                     i++;
+     *                 } else {
+     *                     len = next[len - 1];
+     *                 }
+     *             }
+     *         }
+     *         System.out.println(Arrays.toString(next));
      *
      * @param T 模式串
      * @return prefix table
      */
-    private int[] prefixTable(String T) {
+    public static int[] prefixTable(String T) {
         int[] prefix = new int[T.length()];
-        // len记录的是
+        // len记录的是当前字符前字符串的最长前缀
         int len = 0;
         for (int i = 1; i < T.length(); i++) {
             while (len > 0 && T.charAt(i) != T.charAt(len)) {

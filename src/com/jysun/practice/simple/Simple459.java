@@ -1,5 +1,7 @@
 package com.jysun.practice.simple;
 
+import com.jysun.practice.practice.string.KMP;
+
 import java.util.Objects;
 
 /**
@@ -38,6 +40,8 @@ public class Simple459 {
         System.out.println(obj.repeatedSubstringPattern("abcabcabcabc"));
         System.out.println(obj.repeatedSubstringPattern("aabaaba"));
         System.out.println(obj.repeatedSubstringPatternOpt("aabaaba"));
+        System.out.println(obj.repeatedSubstringPatternKmp("abcabcabc"));
+        System.out.println(obj.repeatedSubstringPatternKmp("aabaaba"));
     }
 
     /**
@@ -62,6 +66,29 @@ public class Simple459 {
     }
 
     /**
+     * 先计算next数组
+     * idx: 0    1   2   3   4   5   6   7   8
+     *      a    b   c   a   b   c   a   b   c
+     * next:0    0   0   1   2   3   4   5   6
+     * len: 9 % (9 - )
+     *
+     *
+     * @param s
+     * @return
+     */
+    public boolean repeatedSubstringPatternKmp(String s) {
+        if (s.length() == 0) {
+            return false;
+        }
+        int[] prefixTable = KMP.prefixTable(s);
+        // 有公共前后缀，并且去掉最后一个字符的前后缀长度还可以被原数组整除说明有重复字符
+        if (prefixTable[s.length() - 1] != 0 && s.length() % (s.length() - prefixTable[s.length() - 1]) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 如果 s 由 n 个子串 ss 构成，那么将第一个子串移到尾部依然是 s
      * 其中 1 < ss < n，那么把两个 s 串拼接在一起，移除第一个和最后一个字符时，s必定包含在其中
      * 这里只是假设 s 满足条件时，才符合上述性质
@@ -73,4 +100,5 @@ public class Simple459 {
     public boolean repeatedSubstringPatternOpt(String s) {
         return (s + s).indexOf(s, 1) != s.length();
     }
+
 }
