@@ -1,4 +1,4 @@
-package com.jysun.practice.simple;
+package com.jysun.practice.offer;
 
 /**
  * 滑动窗口的平均值
