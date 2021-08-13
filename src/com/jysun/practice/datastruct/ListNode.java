@@ -1,5 +1,7 @@
 package com.jysun.practice.datastruct;
 
+import java.util.Random;
+
 /**
  * @author Jysun
  * @description ListNode
@@ -19,5 +21,16 @@ public class ListNode {
                 "val=" + val +
                 ", next=" + next +
                 '}';
+    }
+
+    public static ListNode random(int count) {
+        Random random = new Random();
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        for (int i = 0; i < count; i++) {
+            cur.next = new ListNode(random.nextInt(10));
+            cur = cur.next;
+        }
+        return dummy.next;
     }
 }
