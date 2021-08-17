@@ -120,4 +120,26 @@ public class TreeNode {
         node25.right = node27;
         return node33;
     }
+
+    /**
+     * 创建一个镜像对称的二叉树
+     *
+     * @return
+     */
+    public static TreeNode createMirrorTree() {
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node1_l = new TreeNode(2);
+        TreeNode node1_r = new TreeNode(2);
+        TreeNode node2_l3 = new TreeNode(3);
+        TreeNode node2_r4 = new TreeNode(4);
+        TreeNode node2_l4 = new TreeNode(4);
+        TreeNode node2_r3 = new TreeNode(3);
+        node1.left = node1_l;
+        node1.right = node1_r;
+        node1_l.left = node2_l3;
+        node1_l.right = node2_l4;
+        node1_r.left = node2_r4;
+        node1_r.right = node2_r3;
+        return node1;
+    }
 }
