@@ -33,4 +33,14 @@ public class ListNode {
         }
         return dummy.next;
     }
+
+    public static ListNode orderList(int count) {
+        ListNode dummy = new ListNode(0);
+        ListNode tmp = dummy;
+        for (int i = 1; i <= count; i++) {
+            tmp.next = new ListNode(i);
+            tmp = tmp.next;
+        }
+        return dummy.next;
+    }
 }
