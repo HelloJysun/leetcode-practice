@@ -90,7 +90,16 @@ public class TreeNode {
 
     /**
      * 创建一个二叉查找树
-     *
+     *             33
+     *        /        \
+     *       17         50
+     *     /   \       /   \
+     *   13    18     34    58
+     *     \    \         /   \
+     *     16    25      51   66
+     *          /  \
+     *        19   27
+     *  [13, 16, 17, 18, 19, 25, 27, 33, 34, 50, 51, 58, 66]
      * @return root
      */
     public static TreeNode createBinarySearchTree() {
