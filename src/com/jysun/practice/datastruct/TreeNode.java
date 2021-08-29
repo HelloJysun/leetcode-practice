@@ -116,7 +116,7 @@ public class TreeNode {
         TreeNode node58 = new TreeNode(58);
         node50.left = node34;
         node50.right = node58;
-        node13.right = new TreeNode(16);
+//        node13.right = new TreeNode(16);
         TreeNode node25 = new TreeNode(25);
         node18.right = node25;
         TreeNode node51 = new TreeNode(51);
