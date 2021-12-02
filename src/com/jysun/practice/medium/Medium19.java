@@ -40,6 +40,9 @@ public class Medium19 {
 
         ListNode node = new ListNode(1);
         System.out.println(obj.removeNthFromEnd(node, 1));
+
+        ListNode head = ListNode.orderList(5);
+        System.out.println(obj.removeNthFromEndRecursion(head, 2));
     }
 
     /**
@@ -63,5 +66,16 @@ public class Medium19 {
         }
         slow.next = slow.next.next;
         return dummy.next;
+    }
+
+    int cnt;
+
+    public ListNode removeNthFromEndRecursion(ListNode head, int n) {
+        if (head == null) return null;
+        head.next = removeNthFromEndRecursion(head.next, n);
+        // 递归到最后的null后return计数，计数为n时开始返回下一个节点也就是移除了当前节点
+        cnt++;
+        if (cnt == n) return head.next;
+        return head;
     }
 }
