@@ -81,4 +81,35 @@ public class Practice3 {
         }
         return -1;
     }
+
+    /**
+     * 如果是n个数字，值范围为1 ~ n-1 可用二分法统计
+     */
+    public int findRepeatNumber(int[] nums) {
+        // 数字范围0 ~ n-1
+        int min = 0, max = nums.length - 1;
+        while (min < max) {
+            int mid = min + max >> 1;
+            int cnt = countRange(nums, min, mid);
+            // 左侧统计值大于数，说明在左侧
+            if (cnt > mid - min + 1) {
+                max = mid;
+            } else {
+                min = mid + 1;
+            }
+        }
+        // min = max跳出返回一个即可
+        return min;
+    }
+
+    public int countRange(int[] nums, int min, int max) {
+        int cnt = 0;
+        // 统计全数组中在min - max范围间的数目
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] >= min && nums[i] <= max) {
+                cnt++;
+            }
+        }
+        return cnt;
+    }
 }
