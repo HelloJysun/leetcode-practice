@@ -43,4 +43,14 @@ public class ListNode {
         }
         return dummy.next;
     }
+
+    public static ListNode array2Linked(int[] array) {
+        ListNode dummy = new ListNode(0);
+        ListNode res = dummy;
+        for (int num : array) {
+            dummy.next = new ListNode(num);
+            dummy = dummy.next;
+        }
+        return res.next;
+    }
 }
