@@ -1,5 +1,8 @@
 package com.jysun.practice.datastruct;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TreeNode {
     public int val;
     public TreeNode left;
@@ -16,6 +19,23 @@ public class TreeNode {
                 ", left=" + left +
                 ", right=" + right +
                 '}';
+    }
+
+    public static TreeNode array2Tree(int[] data) {
+        List<TreeNode> list = new ArrayList<>();
+        for (int i = 0; i < data.length; i++) {
+            list.add(i, new TreeNode(data[i]));
+        }
+        for (int i = 0; i < data.length; i++) {
+            TreeNode node = list.get(i);
+            int left = 2 * i + 1;
+            if (left < data.length)
+                node.left = list.get(left);
+            int right = 2 * i + 2;
+            if (right < data.length)
+                node.right = list.get(right);
+        }
+        return list.get(0);
     }
 
     /**
