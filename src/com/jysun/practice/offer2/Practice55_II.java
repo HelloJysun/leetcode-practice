@@ -14,6 +14,9 @@ public class Practice55_II {
         System.out.println(new Practice55_II().isBalanced(root));
         TreeNode falseRoot = TreeNode.createBinarySearchTree();
         System.out.println(new Practice55_II().isBalanced(falseRoot));
+        // 一次遍历法
+        System.out.println(new Practice55_II().isBalancedOpt(root));
+        System.out.println(new Practice55_II().isBalancedOpt(falseRoot));
     }
 
     /**
@@ -35,5 +38,32 @@ public class Practice55_II {
             return 0;
         }
         return Math.max(depth(root.left), depth(root.right)) + 1;
+    }
+
+    /**
+     * 上边做法为前序遍历：根左右。在遍历根后，再遍历左右节点会存在重复统计情况
+     * 所以可以把根节点放在最后即后序遍历来判断，在遍历左右节点时记录各自深度
+     * 然后根据左右子树深度从而直接判断当前节点是否平衡
+     */
+    public boolean isBalancedOpt(TreeNode root) {
+        return recursion(root) != -1;
+    }
+
+    public int recursion(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = recursion(root.left);
+        if (left == -1) {
+            return -1;
+        }
+        int right = recursion(root.right);
+        if (right == -1) {
+            return -1;
+        }
+        if (Math.abs(left - right) <= 1) {
+            return 1 + Math.max(left, right);
+        }
+        return -1;
     }
 }
