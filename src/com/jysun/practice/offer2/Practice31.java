@@ -10,22 +10,24 @@ import java.util.Stack;
  */
 public class Practice31 {
     public static void main(String[] args) {
-        int[] pushed = {1, 2, 3, 4, 5};
-        int[] popped = {4, 5, 3, 2, 1};
+        int[] pushed = {0,1};
+        int[] popped = {1,0};
         System.out.println(new Practice31().validateStackSequences(pushed, popped));
     }
 
     public boolean validateStackSequences(int[] pushed, int[] popped) {
         Stack<Integer> stack = new Stack<>();
-        int i = 0;
-        for (int num : pushed) {
-            stack.push(num);
-            // 模拟入栈后，栈顶元素不等于popped出栈元素就继续入栈，等于就要弹出栈顶元素，移动popped出栈下标
-            while (!stack.isEmpty() && stack.peek() == popped[i]) {
+        int i = 0, j = 0;
+        while (i < pushed.length) {
+            // 模拟入栈
+            stack.push(pushed[i++]);
+            // 一旦弹出序列同栈顶相等就模拟出栈
+            while (!stack.isEmpty() && stack.peek() == popped[j]) {
                 stack.pop();
-                i++;
+                j++;
             }
         }
-        return i == popped.length;
+        // 模拟完入栈出栈，辅助栈内为空
+        return stack.isEmpty();
     }
 }
